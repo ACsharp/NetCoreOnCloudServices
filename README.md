@@ -12,5 +12,9 @@ In order to get the .NET Core app deployed, we need to hack a dummy WorkerRole p
 The benefit of this approach is performance as the .NET Core will work on the native .NET Core runtime. Using SCD means you do not need to add a startup task to install the .NET Core runtime on the VMs.
 **[SEE EXAMPLE HERE](ScdWithExeEntrypointApproach  "See example here")**
 ## Approach 3 - FDD with EXE Role Entrypoint
+This is similar to Approach 2 but using the default .NET Core deployment model (Framework Dependent Deployment or FDD). Since the .NET Core runtime is not installed by default on Cloud Services VMs, we need to add some hacks to download and install it at role startup.
 ## Approach 4 - Classic Worker Role entry point running SCD .NET Core app
+In this approach, the classic .NET Framework based worker role executes the .NET Core app executable via Process.Start().
+As in approach 2, the .NET Core will work on the native .NET Core runtime. Using SCD means you do not need to add a startup task to install the .NET Core runtime on the VMs.
 ## Approach 5 - Classic Worker Role entry point running FDD .NET Core app
+Same as approach 4 but using FDD. Since the .NET Core runtime is not installed by default on Cloud Services VMs, we need to add some hacks to download and install it at role startup.
